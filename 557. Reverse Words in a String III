@@ -1,24 +1,24 @@
 public class Solution {
     public String reverseWords(String s) {
-        String[] splited = s.split("\\s+");
-        String result = "";
-        for(String word : splited) {
-            result += reverse(word) + " ";
+        char[] words = s.toCharArray();
+        for(int i = 0; i < s.length(); i++) {
+            if(words[i] != ' ') {
+                int j = i;
+                while(j + 1 < s.length() && words[j+1] != ' ') j++;
+                reverse(words, i , j);
+                i = j;
+            } 
         }
-        return result.substring(0, result.length()-1);
+        return new String(words);
     }
     
-    public String reverse(String word) {
-        int i = 0;
-        int j = word.length()-1;
-        char[] result = word.toCharArray();
+    public void reverse(char[]words,int i ,int j) {
         while(i < j) {
-            char temp = result[i];
-            result[i] = result[j];
-            result[j] = temp;
+            char temp = words[i];
+            words[i] = words[j];
+            words[j] = temp;
             i++;
             j--;
         }
-        return new String(result);
-    } 
+    }
 }
