@@ -1,8 +1,7 @@
 public class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        int level = 0;
         List<List<Integer>> result = new LinkedList();
-        helper(level, root, result);
+        helper(0, root, result);
         return result;
     }
     
