@@ -1,0 +1,13 @@
+public class Solution {
+    public int lengthOfLIS(int[] nums) {
+        int[] result = new int[nums.length];
+        int length = 0;
+        for(int i : nums) {
+            int index = Arrays.binarySearch(result, 0, length, i);
+            if(index < 0) index = -(index+1);
+            result[index] = i;
+            if(length == index ) length++;
+        }
+        return length;
+    }
+}
