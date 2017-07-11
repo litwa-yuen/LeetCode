@@ -1,0 +1,26 @@
+public class Solution {
+    public List<Double> averageOfLevels(TreeNode root) {
+        List<Double> result = new ArrayList();
+        List<Integer> count = new ArrayList();
+        tra(root, 0,result, count);
+        for(int i = 0; i < result.size(); i++) {
+            result.set(i, result.get(i)/count.get(i));
+        }
+        return result;
+    }
+    
+    public void tra(TreeNode node, int level, List<Double> result, List<Integer> count) {
+        if(node == null) return;
+        if(level >= result.size()) {
+            result.add((double)(node.val));
+            count.add(1);
+        }
+        else {
+            result.set(level, result.get(level)+node.val);
+            count.set(level, count.get(level)+1);
+        }
+        tra(node.left, level+1, result, count);
+        tra(node.right, level+1, result, count);
+
+    }
+}
